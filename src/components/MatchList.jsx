@@ -8,6 +8,10 @@ export default function MatchList() {
     setMatches(saved);
   }, []);
 
+  const clearMatches = () => {
+    localStorage.removeItem("matches");
+    setMatches([]);
+  };
 
   return (
     <div>
@@ -25,7 +29,7 @@ export default function MatchList() {
           ))}
         </ul>
       )}
-
+      <button onClick={clearMatches}>Elimina Partite Salvate</button>
     </div>
   );
 }
