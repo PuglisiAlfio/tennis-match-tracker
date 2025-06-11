@@ -21,6 +21,12 @@ export default function MatchForm() {
     }
     const match = { giocatore1, giocatore2, punteggio, data };
     console.log("Match salvato:", match);
+
+    // Salva nel localStorage
+    const savedMatches = JSON.parse(localStorage.getItem("matches")) || [];
+    savedMatches.push(match);
+    localStorage.setItem("matches", JSON.stringify(savedMatches));
+
     setGiocatore1("");
     setGiocatore2("");
     setPunteggio("");
