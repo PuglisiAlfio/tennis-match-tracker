@@ -26,6 +26,47 @@ h1 {
   line-height: 1.1;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #242424;
+;
+}
+
+form input {
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form button {
+  background-color: #198754;
+  color: white;
+  padding: 0.7rem;
+  border: none;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+form button:hover {
+  background-color: #157347;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
