@@ -16,7 +16,8 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -66,6 +67,54 @@ form button {
 form button:hover {
   background-color: #157347;
 }
+
+.match-list {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.match-list h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.no-match-found{
+  color: #242424;
+}
+
+.match-list-ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.match-item {
+  background-color:#242424;
+  color:#ffffff;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-left: 4px solid #0077ff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.delete-btn {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  background-color: #e74c3c;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

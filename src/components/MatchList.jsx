@@ -20,23 +20,23 @@ export default function MatchList() {
   }
 
   return (
-    <div>
+    <div className="match-list">
       <h2>Partite salvate</h2>
       {matches.length === 0 ? (
-        <p>Nessuna partita trovata.</p>
+        <p className="no-match-found">Nessuna partita trovata.</p>
       ) : (
-        <ul>
+        <ul className="match-list-ul">
           {matches.map((match, index) => (
-            <li key={index}>
+            <li key={index} className="match-item">
               <span>{match.giocatore1}</span> vs <span>{match.giocatore2}</span>
               <br />
               Punteggio: {match.punteggio} - Data: {match.data}
-              <button onClick={()=>handleRemoveMatch(index)}>Elimina Partita</button>
+              <button className="delete-btn" onClick={()=>handleRemoveMatch(index)} >Elimina Partita</button>
             </li>
           ))}
         </ul>
       )}
-      <button onClick={clearMatches}>Elimina Partite Salvate</button>
+      <button className="delete-btn" onClick={clearMatches}>Cancella tutto</button>
     </div>
   );
 }
