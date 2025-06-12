@@ -13,6 +13,12 @@ export default function MatchList() {
     setMatches([]);
   };
 
+  const handleRemoveMatch = (indexMatch) => {
+    const updateMatches = matches.filter((_, index) => index !== indexMatch);
+    setMatches(updateMatches);
+    localStorage.setItem("matches", JSON.stringify(updateMatches))
+  }
+
   return (
     <div>
       <h2>Partite salvate</h2>
@@ -25,6 +31,7 @@ export default function MatchList() {
               <span>{match.giocatore1}</span> vs <span>{match.giocatore2}</span>
               <br />
               Punteggio: {match.punteggio} - Data: {match.data}
+              <button onClick={()=>handleRemoveMatch(index)}>Elimina Partita</button>
             </li>
           ))}
         </ul>
