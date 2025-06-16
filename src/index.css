@@ -85,6 +85,7 @@ form button:hover {
 }
 
 .match-list {
+  color: #333;
   min-width: 400px;
   min-height: 500px;
   overflow-y: auto;

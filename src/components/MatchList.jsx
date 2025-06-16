@@ -1,42 +1,29 @@
-import { useEffect, useState } from "react";
-
-//Inizio componente MatchList per commit su branch feature/match-list
-export default function MatchList() {
-  const [matches, setMatches] = useState([]);
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("matches")) || [];
-    setMatches(saved);
-  }, []);
-
-  const clearMatches = () => {
-    localStorage.removeItem("matches");
-    setMatches([]);
+export default function MatchList({ matches, onSetMatches }) {
+  const handleDelete = (indexToRemove) => {
+    const updated = matches.filter((_, index) => index !== indexToRemove);
+    onSetMatches(updated);
+    localStorage.setItem("matches", JSON.stringify(updated));
   };
-
-  const handleRemoveMatch = (indexMatch) => {
-    const updateMatches = matches.filter((_, index) => index !== indexMatch);
-    setMatches(updateMatches);
-    localStorage.setItem("matches", JSON.stringify(updateMatches))
-  }
 
   return (
     <div className="match-list">
       <h2>Partite salvate</h2>
       {matches.length === 0 ? (
-        <p className="no-match-found">Nessuna partita trovata.</p>
+        <p>Nessuna partita trovata.</p>
       ) : (
-        <ul className="match-list-ul">
+        <ul>
           {matches.map((match, index) => (
-            <li key={index} className="match-item">
-              <span>{match.giocatore1}</span> vs <span>{match.giocatore2}</span>
+            <li key={index}>
+              <strong>{match.player1}</strong> vs{" "}
+              <strong>{match.player2}</strong>
               <br />
-              Punteggio: {match.punteggio} - Data: {match.data}
-              <button className="delete-btn" onClick={()=>handleRemoveMatch(index)} >Elimina Partita</button>
+              Punteggio: {match.score} – Data: {match.date}
+              <br />
+              <button onClick={() => handleDelete(index)}>Elimina</button>
             </li>
           ))}
         </ul>
       )}
-      <button className="delete-btn" onClick={clearMatches}>Cancella tutto</button>
     </div>
   );
 }

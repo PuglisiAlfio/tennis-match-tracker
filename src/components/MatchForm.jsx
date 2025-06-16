@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 //inizio componente MatchForm per commit su branch feature/match-form
-export default function MatchForm() {
+export default function MatchForm({ matches, onSetMatches }) {
   const [giocatore1, setGiocatore1] = useState("");
   const [giocatore2, setGiocatore2] = useState("");
   const [punteggio, setPunteggio] = useState("");
@@ -19,18 +19,23 @@ export default function MatchForm() {
       setError("Inserisci un punteggio valido (es: 6-3 4-6 7-5)");
       return;
     }
-    const match = { giocatore1, giocatore2, punteggio, data };
-    console.log("Match salvato:", match);
 
-    // Salva nel localStorage
-    const savedMatches = JSON.parse(localStorage.getItem("matches")) || [];
-    savedMatches.push(match);
-    localStorage.setItem("matches", JSON.stringify(savedMatches));
+    const match = {
+      player1: giocatore1,
+      player2: giocatore2,
+      score: punteggio,
+      date: data,
+    };
+    const updatedMatches = [...matches, match];
+    onSetMatches(updatedMatches); // aggiorna stato globale
+    localStorage.setItem("matches", JSON.stringify(updatedMatches)); // aggiorna anche localStorage
 
+    // Reset campi
     setGiocatore1("");
     setGiocatore2("");
     setPunteggio("");
     setData("");
+    setError("");
   };
   return (
     <div>
