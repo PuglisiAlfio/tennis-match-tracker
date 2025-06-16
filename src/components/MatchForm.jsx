@@ -1,12 +1,30 @@
-import { useState } from "react";
+import { useReducer } from "react";
 
-//inizio componente MatchForm per commit su branch feature/match-form
+// Stato iniziale del form
+const initialState = {
+  giocatore1: "",
+  giocatore2: "",
+  punteggio: "",
+  data: "",
+  error: "",
+};
+
+// Funzione reducer per gestire gli aggiornamenti di stato
+function formReducer(state, action) {
+  switch (action.type) {
+    case "SET_FIELD":
+      return { ...state, [action.field]: action.value };
+    case "SET_ERROR":
+      return { ...state, error: action.error };
+    case "RESET":
+      return initialState;
+    default:
+      return state;
+  }
+}
+
 export default function MatchForm({ matches, onSetMatches }) {
-  const [giocatore1, setGiocatore1] = useState("");
-  const [giocatore2, setGiocatore2] = useState("");
-  const [punteggio, setPunteggio] = useState("");
-  const [data, setData] = useState("");
-  const [error, setError] = useState("");
+  const [state, dispatch] = useReducer(formReducer, initialState);
 
   const isValidScore = (punteggioStr) => {
     const pattern = /^(\d{1,2}-\d{1,2})(\s\d{1,2}-\d{1,2})*$/;
@@ -15,28 +33,29 @@ export default function MatchForm({ matches, onSetMatches }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isValidScore(punteggio)) {
-      setError("Inserisci un punteggio valido (es: 6-3 4-6 7-5)");
+
+    if (!isValidScore(state.punteggio)) {
+      dispatch({
+        type: "SET_ERROR",
+        error: "Inserisci un punteggio valido (es: 6-3 4-6 7-5)",
+      });
       return;
     }
 
     const match = {
-      player1: giocatore1,
-      player2: giocatore2,
-      score: punteggio,
-      date: data,
+      player1: state.giocatore1,
+      player2: state.giocatore2,
+      score: state.punteggio,
+      date: state.data,
     };
-    const updatedMatches = [...matches, match];
-    onSetMatches(updatedMatches); // aggiorna stato globale
-    localStorage.setItem("matches", JSON.stringify(updatedMatches)); // aggiorna anche localStorage
 
-    // Reset campi
-    setGiocatore1("");
-    setGiocatore2("");
-    setPunteggio("");
-    setData("");
-    setError("");
+    const updatedMatches = [...matches, match];
+    onSetMatches(updatedMatches);
+    localStorage.setItem("matches", JSON.stringify(updatedMatches));
+
+    dispatch({ type: "RESET" });
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -44,27 +63,55 @@ export default function MatchForm({ matches, onSetMatches }) {
         <input
           type="text"
           placeholder="Giocatore 1"
-          value={giocatore1}
-          onChange={(e) => setGiocatore1(e.target.value)}
+          required
+          value={state.giocatore1}
+          onChange={(e) =>
+            dispatch({
+              type: "SET_FIELD",
+              field: "giocatore1",
+              value: e.target.value,
+            })
+          }
         />
         <input
           type="text"
           placeholder="Giocatore 2"
-          value={giocatore2}
-          onChange={(e) => setGiocatore2(e.target.value)}
+          required
+          value={state.giocatore2}
+          onChange={(e) =>
+            dispatch({
+              type: "SET_FIELD",
+              field: "giocatore2",
+              value: e.target.value,
+            })
+          }
         />
         <input
           type="text"
-          placeholder="Punteggio es 6-3; 3-6; 7-6"
-          value={punteggio}
-          onChange={(e) => setPunteggio(e.target.value)}
+          placeholder="Punteggio es: 6-3 3-6 7-5"
+          value={state.punteggio}
+          onChange={(e) =>
+            dispatch({
+              type: "SET_FIELD",
+              field: "punteggio",
+              value: e.target.value,
+            })
+          }
         />
-        {error && <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>}
+        {state.error && (
+          <p style={{ color: "red", marginBottom: "1rem" }}>{state.error}</p>
+        )}
         <input
           type="date"
-          placeholder="Data"
-          value={data}
-          onChange={(e) => setData(e.target.value)}
+          required
+          value={state.data}
+          onChange={(e) =>
+            dispatch({
+              type: "SET_FIELD",
+              field: "data",
+              value: e.target.value,
+            })
+          }
         />
         <button type="submit">Salva Partita</button>
       </form>
