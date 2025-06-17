@@ -58,7 +58,6 @@ form h2 {
   margin-bottom: 1rem;
   text-align: center;
   color: #242424;
-;
 }
 
 form input {
@@ -91,34 +90,33 @@ form button:hover {
   overflow-y: auto;
   box-sizing: border-box;
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #f7f7f7;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .match-list h2 {
+  text-align: center;
   margin-bottom: 1rem;
   color: #333;
 }
 
-.no-match-found{
+.no-match-found {
   color: #242424;
 }
 
-.match-list-ul {
+.match-list ul {
   list-style-type: none;
   padding: 0;
 }
 
-.match-item {
-  background-color:#242424;
-  color:#ffffff;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  border-left: 4px solid #0077ff;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+.match-list li {
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 10px;
+  background-color: #333;
+  color: #f8f9fa;
 }
 
 .delete-btn {
@@ -135,7 +133,6 @@ form button:hover {
 .delete-btn:hover {
   background-color: #c0392b;
 }
-
 
 @media (prefers-color-scheme: light) {
   :root {
