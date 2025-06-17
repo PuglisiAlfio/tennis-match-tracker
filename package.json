@@ -3,6 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "Piccola app per tenere traccia delle tue partite di tennis",
+  "author": "Alfio Puglisi",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
