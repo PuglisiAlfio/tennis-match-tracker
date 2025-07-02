@@ -90,6 +90,7 @@ export default function MatchForm({ matches, onSetMatches }) {
         <input
           type="date"
           required
+          max={new Date().toISOString().split("T")[0]}
           value={state.data}
           onChange={(e) =>
             dispatch({
