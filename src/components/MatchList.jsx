@@ -1,3 +1,5 @@
+import MatchItem from "./MatchItem";
+
 export default function MatchList({ matches, onSetMatches }) {
   const handleDelete = (indexToRemove) => {
     const updated = matches.filter((_, index) => index !== indexToRemove);
@@ -14,14 +16,7 @@ export default function MatchList({ matches, onSetMatches }) {
         ) : (
           <ul>
             {matches.map((match, index) => (
-              <li key={index}>
-                <strong>{match.player1}</strong> vs{" "}
-                <strong>{match.player2}</strong>
-                <br />
-                Punteggio: {match.score} – Data: {match.date}
-                <br />
-                <button onClick={() => handleDelete(index)}>Elimina</button>
-              </li>
+              <MatchItem match={match} index={index} onDelete={handleDelete}/>
             ))}
           </ul>
         )}
