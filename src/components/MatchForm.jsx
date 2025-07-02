@@ -1,5 +1,7 @@
 import { useReducer } from "react";
 
+import styleForm from "../styles/matchForm.module.css"
+
 // Stato iniziale del form
 const initialState = {
   giocatore1: "",
@@ -57,7 +59,7 @@ export default function MatchForm({ matches, onSetMatches }) {
   };
 
   return (
-    <div>
+    <div className={styleForm}>
       <form onSubmit={handleSubmit}>
         <h2>Inserisci una partita</h2>
         <input
