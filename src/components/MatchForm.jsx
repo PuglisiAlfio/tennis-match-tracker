@@ -33,7 +33,12 @@ export default function MatchForm({ matches, onSetMatches }) {
     onSetMatches(updatedMatches);
     localStorage.setItem("matches", JSON.stringify(updatedMatches));
 
-    dispatch({ type: "RESET" });
+    dispatch({ type: "SET_SUCCESS", success: true });
+
+    setTimeout(() => {
+      dispatch({ type: "SET_SUCCESS", success: false });
+      dispatch({ type: "RESET" });
+    }, 3000);
   };
 
   return (
@@ -44,6 +49,7 @@ export default function MatchForm({ matches, onSetMatches }) {
           type="text"
           placeholder="Giocatore 1"
           required
+          autoFocus
           value={state.giocatore1}
           onChange={(e) =>
             dispatch({
@@ -93,7 +99,14 @@ export default function MatchForm({ matches, onSetMatches }) {
             })
           }
         />
-        <button type="submit">Salva Partita</button>
+        <button type="submit">
+          Salva Partita
+        </button>
+        {state.success && (
+          <p style={{ color: "green", marginBottom: "1rem" }}>
+            ✅ Partita salvata con successo!
+          </p>
+        )}
       </form>
     </div>
   );

@@ -5,6 +5,7 @@ export const initialState = {
   punteggio: "",
   data: "",
   error: "",
+  success: false
 };
 
 // Funzione reducer per gestire gli aggiornamenti di stato
@@ -16,6 +17,8 @@ export function formReducer(state, action) {
       return { ...state, error: action.error };
     case "RESET":
       return initialState;
+    case "SET_SUCCESS":
+      return { ...state, success: action.success };
     default:
       return state;
   }
