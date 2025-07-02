@@ -1,5 +1,5 @@
 // Stato iniziale del form
-const initialState = {
+export const initialState = {
   giocatore1: "",
   giocatore2: "",
   punteggio: "",
