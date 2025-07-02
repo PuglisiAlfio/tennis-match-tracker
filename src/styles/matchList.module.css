@@ -1,0 +1,50 @@
+.match-list {
+  color: #333;
+  min-width: 400px;
+  min-height: 500px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.match-list h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.no-match-found {
+  color: #242424;
+}
+
+.match-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.match-list li {
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 10px;
+  background-color: #333;
+  color: #f8f9fa;
+}
+
+button {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  background-color: #e74c3c;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #c0392b;
+}
