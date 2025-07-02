@@ -1,7 +1,7 @@
 import { useReducer } from "react";
-import { initialState, formReducer} from "../reducers/matchReducer.js"
+import { initialState, formReducer } from "../reducers/matchReducer.js";
 
-import styleForm from "../styles/matchForm.module.css"
+import styleForm from "../styles/matchForm.module.css";
 
 export default function MatchForm({ matches, onSetMatches }) {
   const [state, dispatch] = useReducer(formReducer, initialState);
