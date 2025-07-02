@@ -11,7 +11,7 @@ Una piccola webapp realizzata con React e Vite per registrare e tenere traccia d
 - Salvataggio partite nel `localStorage` del browser
 - Visualizzazione dinamica della lista delle partite salvate
 - Eliminazione singola delle partite dalla lista
-- Stile CSS base per una UI pulita e semplice
+- Stile CSS base e Modules per una UI pulita e semplice
 
 ---
 
@@ -20,4 +20,4 @@ Una piccola webapp realizzata con React e Vite per registrare e tenere traccia d
 - React (hooks: useState, useEffect, useReducer)
 - Vite (bundler veloce)
 - LocalStorage per la persistenza dati
-- CSS (con possibilità di future evoluzioni a CSS Modules)
+- CSS Modules
