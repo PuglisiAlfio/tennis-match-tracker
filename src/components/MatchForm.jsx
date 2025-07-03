@@ -1,7 +1,10 @@
 import { useReducer } from "react";
 import { initialState, formReducer } from "../reducers/matchReducer.js";
+import { motion } from "framer-motion";
 
 import styleForm from "../styles/matchForm.module.css";
+
+const MotionForm = motion.form;
 
 export default function MatchForm({ matches, onSetMatches }) {
   const [state, dispatch] = useReducer(formReducer, initialState);
@@ -42,73 +45,75 @@ export default function MatchForm({ matches, onSetMatches }) {
   };
 
   return (
-    <div className={styleForm}>
-      <form onSubmit={handleSubmit}>
-        <h2>Inserisci una partita</h2>
-        <input
-          type="text"
-          placeholder="Giocatore 1"
-          required
-          autoFocus
-          value={state.giocatore1}
-          onChange={(e) =>
-            dispatch({
-              type: "SET_FIELD",
-              field: "giocatore1",
-              value: e.target.value,
-            })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Giocatore 2"
-          required
-          value={state.giocatore2}
-          onChange={(e) =>
-            dispatch({
-              type: "SET_FIELD",
-              field: "giocatore2",
-              value: e.target.value,
-            })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Punteggio es: 6-3 3-6 7-5"
-          value={state.punteggio}
-          onChange={(e) =>
-            dispatch({
-              type: "SET_FIELD",
-              field: "punteggio",
-              value: e.target.value,
-            })
-          }
-        />
-        {state.error && (
-          <p style={{ color: "red", marginBottom: "1rem" }}>{state.error}</p>
-        )}
-        <input
-          type="date"
-          required
-          max={new Date().toISOString().split("T")[0]}
-          value={state.data}
-          onChange={(e) =>
-            dispatch({
-              type: "SET_FIELD",
-              field: "data",
-              value: e.target.value,
-            })
-          }
-        />
-        <button type="submit">
-          Salva Partita
-        </button>
-        {state.success && (
-          <p style={{ color: "green", marginBottom: "1rem" }}>
-            ✅ Partita salvata con successo!
-          </p>
-        )}
-      </form>
-    </div>
+    <MotionForm
+      className={styleForm}
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      onSubmit={handleSubmit}
+    >
+      <h2>Inserisci una partita</h2>
+      <input
+        type="text"
+        placeholder="Giocatore 1"
+        required
+        autoFocus
+        value={state.giocatore1}
+        onChange={(e) =>
+          dispatch({
+            type: "SET_FIELD",
+            field: "giocatore1",
+            value: e.target.value,
+          })
+        }
+      />
+      <input
+        type="text"
+        placeholder="Giocatore 2"
+        required
+        value={state.giocatore2}
+        onChange={(e) =>
+          dispatch({
+            type: "SET_FIELD",
+            field: "giocatore2",
+            value: e.target.value,
+          })
+        }
+      />
+      <input
+        type="text"
+        placeholder="Punteggio es: 6-3 3-6 7-5"
+        value={state.punteggio}
+        onChange={(e) =>
+          dispatch({
+            type: "SET_FIELD",
+            field: "punteggio",
+            value: e.target.value,
+          })
+        }
+      />
+      {state.error && (
+        <p style={{ color: "red", marginBottom: "1rem" }}>{state.error}</p>
+      )}
+      <input
+        type="date"
+        required
+        max={new Date().toISOString().split("T")[0]}
+        value={state.data}
+        onChange={(e) =>
+          dispatch({
+            type: "SET_FIELD",
+            field: "data",
+            value: e.target.value,
+          })
+        }
+      />
+      <button type="submit">Salva Partita</button>
+      {state.success && (
+        <p style={{ color: "green", marginBottom: "1rem" }}>
+          ✅ Partita salvata con successo!
+        </p>
+      )}
+    </MotionForm>
   );
 }
