@@ -19,7 +19,12 @@ export default function MatchList({ matches, onSetMatches }) {
         ) : (
           <ul>
             {matches.map((match, index) => (
-              <MatchItem match={match} index={index} onDelete={handleDelete} key={index}/>
+              <MatchItem
+                match={match}
+                index={index}
+                onDelete={handleDelete}
+                key={index}
+              />
             ))}
           </ul>
         )}
