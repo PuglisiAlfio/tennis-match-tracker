@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import styleForm from "../styles/matchForm.module.css";
 
 const MotionForm = motion.form;
+const MotionSuccess = motion.p;
 
 export default function MatchForm({ matches, onSetMatches }) {
   const [state, dispatch] = useReducer(formReducer, initialState);
@@ -110,9 +111,15 @@ export default function MatchForm({ matches, onSetMatches }) {
       />
       <button type="submit">Salva Partita</button>
       {state.success && (
-        <p style={{ color: "green", marginBottom: "1rem" }}>
+        <MotionSuccess
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          style={{ color: "green", marginBottom: "1rem" }}
+        >
           ✅ Partita salvata con successo!
-        </p>
+        </MotionSuccess>
       )}
     </MotionForm>
   );
