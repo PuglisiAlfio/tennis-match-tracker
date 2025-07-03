@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 
+import styleItem from "../styles/matchItem.module.css"
+
 const MotionLi = motion.li;
 
 export default function MatchItem({ match, index, onDelete }) {
   return (
     <>
-      <MotionLi
+      <MotionLi className={styleItem}
         key={index}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
