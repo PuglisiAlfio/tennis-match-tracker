@@ -27,6 +27,7 @@ export default function MatchForm({ matches, onSetMatches }) {
     }
 
     const match = {
+      id: crypto.randomUUID(),
       player1: state.giocatore1,
       player2: state.giocatore2,
       score: state.punteggio,
