@@ -10,6 +10,8 @@ Una piccola webapp realizzata con React e Vite per registrare e tenere traccia d
 - Validazione semplice del punteggio (esempio: `6-3 4-6 7-5`)
 - Salvataggio partite nel `localStorage` del browser
 - Visualizzazione dinamica della lista delle partite salvate
+- Filtro di ricerca per nome giocatore
+- Pulsante di reset rapido del filtro
 - Eliminazione singola delle partite dalla lista
 - Stile CSS base e Modules per una UI pulita e semplice
 
