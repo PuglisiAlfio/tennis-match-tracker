@@ -19,7 +19,7 @@ export default function MatchItem({ match, index, onDelete }) {
       >
         <strong>{match.player1}</strong> vs <strong>{match.player2}</strong>
         <br />
-        Punteggio: {match.score} – Data: {new Date(match.date).toLocaleDateString("it-IT")}
+        Punteggio: {match.score} – Data: {new Date(match.date).toLocaleDateString("it-IT", { day: '2-digit', month: 'long', year: 'numeric' })}
         <br />
         <MotionButton
           className={styleItem["deleteButton"]}
