@@ -4,6 +4,7 @@ export const initialState = {
   giocatore2: "",
   punteggio: "",
   data: "",
+  bestOf: 3,
   error: "",
   success: false
 };

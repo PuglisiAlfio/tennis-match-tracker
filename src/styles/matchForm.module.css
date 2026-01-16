@@ -26,6 +26,20 @@ form input {
   border-radius: 8px;
 }
 
+form label {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #242424; /* 🔥 visibile su sfondo chiaro */
+}
+
+form select {
+  margin-left: 1rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
 form button {
   background-color: #198754;
   color: white;

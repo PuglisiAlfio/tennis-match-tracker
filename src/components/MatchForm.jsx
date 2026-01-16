@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import { initialState, formReducer } from "../reducers/matchReducer.js";
 import { motion } from "framer-motion";
+import { validateTennisScore } from "../utils/validateScore.js";
 
 import styleForm from "../styles/matchForm.module.css";
 
@@ -10,18 +11,16 @@ const MotionSuccess = motion.p;
 export default function MatchForm({ matches, onSetMatches }) {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
-  const isValidScore = (punteggioStr) => {
-    const pattern = /^(\d{1,2}-\d{1,2})(\s\d{1,2}-\d{1,2})*$/;
-    return pattern.test(punteggioStr.trim());
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!isValidScore(state.punteggio)) {
+    // Validazione punteggio tennis (best of 3 di default)
+    const scoreError = validateTennisScore(state.punteggio, state.bestOf);
+
+    if (scoreError) {
       dispatch({
         type: "SET_ERROR",
-        error: "Inserisci un punteggio valido (es: 6-3 4-6 7-5)",
+        error: scoreError,
       });
       return;
     }
@@ -32,6 +31,7 @@ export default function MatchForm({ matches, onSetMatches }) {
       player2: state.giocatore2,
       score: state.punteggio,
       date: state.data,
+      bestOf: state.bestOf,
     };
 
     const updatedMatches = [...matches, match];
@@ -82,6 +82,22 @@ export default function MatchForm({ matches, onSetMatches }) {
           })
         }
       />
+      <label className="">
+        Tipo di match:
+        <select
+          value={state.bestOf}
+          onChange={(e) =>
+            dispatch({
+              type: "SET_FIELD",
+              field: "bestOf",
+              value: Number(e.target.value),
+            })
+          }
+        >
+          <option value={3}>2 su 3</option>
+          <option value={5}>3 su 5</option>
+        </select>
+      </label>
       <input
         type="text"
         placeholder="Punteggio es: 6-3 3-6 7-5"

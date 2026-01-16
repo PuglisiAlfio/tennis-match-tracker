@@ -21,6 +21,10 @@ export default function MatchItem({ match, index, onDelete }) {
         <br />
         Punteggio: {match.score} – Data: {new Date(match.date).toLocaleDateString("it-IT", { day: '2-digit', month: 'long', year: 'numeric' })}
         <br />
+        <small>
+          Match al meglio dei {match.bestOf}
+        </small>
+        <br />
         <MotionButton
           className={styleItem["deleteButton"]}
           whileHover={{ scale: 1.05 }}
