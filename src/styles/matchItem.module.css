@@ -1,14 +1,19 @@
-li button {
+.matchItem {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deleteButton {
   margin-top: 0.5rem;
-  margin-left: 1rem;
   padding: 0.4rem 0.75rem;
   border: none;
   background-color: #e74c3c;
   color: white;
   cursor: pointer;
   border-radius: 4px;
-}
-
-button:hover {
-  background-color: #c0392b;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }

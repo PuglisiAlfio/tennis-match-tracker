@@ -1,4 +1,4 @@
-import styleFilter from "../styles/MatchFilter.module.css";
+import styleFilter from "../styles/matchFilter.module.css";
 
 export default function MatchFilter({ query, onChange }) {
   const showReset = query.trim().length > 0;
